@@ -46,7 +46,7 @@ static int chrdev_req_probe(struct platform_device *pdev) {
 	/*
 	 * 	Register the new chr device
 	 */
-	ret = chrdev_device_register("dht11unimi", 0, true, owner, dev);
+	ret = chrdev_device_register(DHT11UNIMI_COMPATIBLE, 0, true, owner, dev);
 	if (ret) {
 		dev_err(dev, "unable to register device %s Err %d", dev->init_name, ret);
 		return ret;
@@ -64,9 +64,8 @@ static int chrdev_req_remove(struct platform_device *pdev) {
 
 	/*
 	 * 	Remove driver
-	 * 	TODO: remove fixed reference
 	 */
-	ret = chrdev_device_unregister("dht11unimi", 0);
+	ret = chrdev_device_unregister(DHT11UNIMI_COMPATIBLE, 0);
 	if (ret)
 		dev_err(dev, "unable to unregister");
 

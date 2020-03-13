@@ -77,24 +77,27 @@ static ssize_t chrdev_read(struct file *filp, char __user *buf, size_t count, lo
 	 *		than driver buffer
 	 */
 	if (count < chrdev_dht11.wbytes) {
+		mutex_unlock(&chrdev_dht11.mux);
 		return -EFBIG;
 	}
 
 	/*
 	 *		Sensor data are sampled by a scheduled thread working
-	 *		in asyncronous for it's own
 	 */
-	if (chrdev_dht11.sensor_busy)
+	if (chrdev_dht11.sensor_busy) {
+		mutex_unlock(&chrdev_dht11.mux);
 		return -EBUSY;
+	}
 
 	/* Return data to the user space */
 	ret = copy_to_user(buf, chrdev_dht11.buf, chrdev_dht11.wbytes);
 
-mutex_unlock(&chrdev_dht11.mux);
-
-	if (ret < 0)
+	if (ret < 0) {
+		mutex_unlock(&chrdev_dht11.mux);
 		return -EFAULT;
+	}
 
+	mutex_unlock(&chrdev_dht11.mux);
 	count = chrdev_dht11.wbytes;
 	*ppos += count;
 
@@ -239,7 +242,7 @@ int chrdev_device_register(const char *label, unsigned int id, unsigned int read
 	mutex_init(&chrdev->mux);
 	init_waitqueue_head(&chrdev->queue);
 
-	/* instal scheduled work */
+	/* install scheduled work */
 	INIT_DELAYED_WORK(&my_work, dht11_work_sampling);
 	schedule_delayed_work(&my_work, msecs_to_jiffies(chrdev->w_dht11_work_time));
 

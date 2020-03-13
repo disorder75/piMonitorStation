@@ -141,9 +141,8 @@ static irqreturn_t irq_handler(int i, void *blah, struct pt_regs *regs) {
 					chrdev_dht11.dht_bit_pos++;
 
 				chrdev_dht11.dht_bit_cnt++;
-			}
-
-			chrdev_dht11.dht_start_bit++;
+			} else
+				chrdev_dht11.dht_start_bit = 1;
 		}
 
 		// give control back
