@@ -2,7 +2,7 @@
 IoT driver prototype based on rapsberry pi zero and DHT11 sensor's family.
 First of all, i'm not an expert about "kernel stuff" so i'm sorry if my code 
 doesn't look like a pro.
-Are projects built to learn and develop experience.
+This projects is built to learn and develop experience with a working prototype, ugly, yes, but it works.
 
 
 In order to cross-compile correctly the driver project for Arm architecture on host machine (usually Intel or Amd):
