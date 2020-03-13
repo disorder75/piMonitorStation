@@ -1,0 +1,23 @@
+diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+index 1f3d3f2171c6..37a9c7e9b072 100644
+--- a/drivers/misc/Kconfig
++++ b/drivers/misc/Kconfig
+@@ -535,4 +535,18 @@ source "drivers/misc/echo/Kconfig"
+ source "drivers/misc/cxl/Kconfig"
+ source "drivers/misc/ocxl/Kconfig"
+ source "drivers/misc/cardreader/Kconfig"
++source "drivers/misc/dht11unimi/Kconfig"
++
++config DUMMY_CODE
++	tristate "Dummy Code - UniMi Project"
++	default n
++	---help---
++		This code is just for demostration, experimental for UniMi project
++
++config IRQTEST_CODE
++	tristate "Simple IRQ test - UniMi Project"
++	default n
++	---help---
++		The irqtest module for demostration, experimental for UniMi project.
++
+ endmenu

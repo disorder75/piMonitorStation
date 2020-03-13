@@ -1,0 +1,12 @@
+diff --git a/arch/arm/configs/bcm2709_defconfig b/arch/arm/configs/bcm2709_defconfig
+index 0683026145eb..38cccb22b13f 100644
+--- a/arch/arm/configs/bcm2709_defconfig
++++ b/arch/arm/configs/bcm2709_defconfig
+@@ -469,6 +469,7 @@ CONFIG_CDROM_PKTCDVD=m
+ CONFIG_ATA_OVER_ETH=m
+ CONFIG_EEPROM_AT24=m
+ CONFIG_TI_ST=m
++CONFIG_DHT11UNIMI=m
+ CONFIG_SCSI=y
+ # CONFIG_SCSI_PROC_FS is not set
+ CONFIG_BLK_DEV_SD=y

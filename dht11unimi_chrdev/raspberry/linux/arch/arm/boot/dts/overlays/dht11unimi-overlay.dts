@@ -1,0 +1,42 @@
+/*
+ * Overlay for the DHT11/21/22 humidity/temperature sensor modules.
+ */
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2835";
+
+	fragment@0 {
+		target-path = "/";
+		__overlay__ {
+
+			dht11unimi: dht11unimi@0 {
+				compatible = "dht11unimi";
+				pinctrl-names = "default";
+				pinctrl-0 = <&dht11unimi_pins>;
+				gpios = <&gpio 23 0>;
+				status = "okay";
+				label = "dht11unimi";
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&gpio>;
+		__overlay__ {
+			dht11unimi_pins: dht11unimi_pins@0 {
+				brcm,pins = <23>;
+				brcm,function = <0>; // in
+				brcm,pull = <0>; // off
+			};
+		};
+	};
+
+	__overrides__ {
+		gpiopin = <&dht11unimi_pins>,"brcm,pins:0",
+			<&dht11unimi_pins>, "reg:0",
+			<&dht11unimi>,"gpios:23",
+			<&dht11unimi>,"reg:0";
+	};
+};

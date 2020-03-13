@@ -1,0 +1,11 @@
+diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+index 16d1c85cfced..4cabf4655292 100644
+--- a/drivers/misc/Makefile
++++ b/drivers/misc/Makefile
+@@ -59,3 +59,6 @@ obj-$(CONFIG_ASPEED_LPC_SNOOP)	+= aspeed-lpc-snoop.o
+ obj-$(CONFIG_PCI_ENDPOINT_TEST)	+= pci_endpoint_test.o
+ obj-$(CONFIG_OCXL)		+= ocxl/
+ obj-$(CONFIG_MISC_RTSX)		+= cardreader/
++obj-$(CONFIG_DHT11_UNIMI) += dht11unimi/
++#obj-$(CONFIG_DUMMY_CODE)        += dummy-code.o/
++#obj-$(CONFIG_IRQTEST_CODE)	+= irqtest.o/

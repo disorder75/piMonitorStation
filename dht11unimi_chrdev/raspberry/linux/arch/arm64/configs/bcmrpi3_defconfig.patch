@@ -1,0 +1,12 @@
+diff --git a/arch/arm64/configs/bcmrpi3_defconfig b/arch/arm64/configs/bcmrpi3_defconfig
+index bdcab6646d80..d8c57dfffe59 100644
+--- a/arch/arm64/configs/bcmrpi3_defconfig
++++ b/arch/arm64/configs/bcmrpi3_defconfig
+@@ -407,6 +407,7 @@ CONFIG_CDROM_PKTCDVD=m
+ CONFIG_ATA_OVER_ETH=m
+ CONFIG_EEPROM_AT24=m
+ CONFIG_TI_ST=m
++CONFIG_DHT11UNIMI=m
+ CONFIG_SCSI=y
+ # CONFIG_SCSI_PROC_FS is not set
+ CONFIG_BLK_DEV_SD=y

@@ -1,0 +1,12 @@
+diff --git a/arch/arm/boot/dts/overlays/Makefile b/arch/arm/boot/dts/overlays/Makefile
+index 66f5be258aa5..8b4ecfb2b2f6 100644
+--- a/arch/arm/boot/dts/overlays/Makefile
++++ b/arch/arm/boot/dts/overlays/Makefile
+@@ -27,6 +27,7 @@ dtbo-$(CONFIG_ARCH_BCM2835) += \
+ 	balena-fin.dtbo \
+ 	bmp085_i2c-sensor.dtbo \
+ 	dht11.dtbo \
++	dht11unimi.dtbo \
+ 	dionaudio-loco.dtbo \
+ 	dionaudio-loco-v2.dtbo \
+ 	disable-bt.dtbo \

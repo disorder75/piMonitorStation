@@ -1,0 +1,11 @@
+menu "DHT11 Temperature and Humidity driver sensor"
+
+config DHT11_UNIMI
+	tristate "DHT11 Unimi driver"
+	depends on GPIOLIB || COMPILE_TEST
+	default m
+	help
+	  Device driver support sensors DHT11 from UniMi-SSRI
+	  Driver will use GPIO pin defined into the device tree
+	  
+endmenu

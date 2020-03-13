@@ -1,0 +1,3 @@
+this dir and subdirs contains the "diff" to apply into a official raspberry project from https://github.com/raspberrypi/linux.git
+in order to enable the dht11unimi driver
+
