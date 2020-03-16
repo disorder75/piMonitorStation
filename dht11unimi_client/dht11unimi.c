@@ -172,7 +172,7 @@ int https_upload_to_host(char *hostname, int port, char *temp, char *rh, char *d
 	char http_clientMessage[HTTP_MESSAGE_SIZE*2] = { 0 };
 	char http_clientMessage_body[HTTP_MESSAGE_SIZE] = { 0 };
 	char http_serverMessage[HTTP_MESSAGE_SIZE] = { 0 };
-	ssize_t nbytes;
+	ssize_t nbytes = -1;
 
 	if ((hp = gethostbyname(hostname)) == NULL) {
 		printf("Impossible to resolve remote hostname %s. Check your internet connection and dns configuration\n", hostname);
@@ -251,7 +251,7 @@ int https_upload_to_host(char *hostname, int port, char *temp, char *rh, char *d
     close(sockfd);
     SSL_CTX_free(ctx);
 
-    return 0;
+    return nbytes;
 }
 
 
@@ -269,7 +269,7 @@ int https_hello_server(char *hostname, int port) {
 	struct hostent *hp;			/* domain search result */
 	char acClientRequest[1024] = {0};
 	char buf[HTTP_MESSAGE_SIZE];
-	ssize_t nbytes;
+	ssize_t nbytes = -1;
 
 	if ((hp = gethostbyname(hostname)) == NULL) {
 		printf("Impossible to resolve remote hostname %s. Check your internet connection and dns configuration\n", hostname);
@@ -334,12 +334,12 @@ int https_hello_server(char *hostname, int port) {
     close(sockfd);
     SSL_CTX_free(ctx);
 
-    if (strstr(buf, "hello") == NULL) {
+    if ((nbytes > 0) && (strstr(buf, "hello") == NULL)) {
     	printf("failed to retrieve echo hello from the server. Remote machine isn't still ready. Retry later");
     	return -1;
     }
 
-    return 0;
+    return nbytes;
 }
 
 int get_if_mac_address(char* src_if_name, char* dst_mac_address) {
@@ -350,6 +350,7 @@ int get_if_mac_address(char* src_if_name, char* dst_mac_address) {
 	int sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	if (sockfd < 0) {
 		printf("Failed to retrieve socket for network operations. Stop.");
+		return sockfd;
 	}
 
 	/*
